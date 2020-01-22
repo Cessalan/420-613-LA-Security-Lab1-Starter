@@ -27,7 +27,7 @@ namespace SecurityLab1_Starter.Controllers
 
                 Logger.Log(filterContext.Exception.ToString(), w);
             }
-            filterContext.Result = RedirectToAction("Index", "ErrorHandler");
+            filterContext.Result = RedirectToAction("Index", "Error");
 
         }
 
