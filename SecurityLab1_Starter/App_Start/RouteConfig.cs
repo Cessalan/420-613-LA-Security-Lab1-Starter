@@ -40,12 +40,23 @@ namespace SecurityLab1_Starter
                   name: "Home",
                   url: "Home/{action}",
                   defaults: new { controller = "Home", action = "Index"},
-                  constraints:new {action ="Index|Contact|About|GenError"}
+                  constraints:new {action ="Index|Contact|About|GenError|Account"}
 );
-            routes.MapRoute(
+/*            routes.MapRoute(
                 name: "CatchAllRoute",
                 url: "{*url}",
                 defaults: new { controller = "Error", action = "NotFound", id = UrlParameter.Optional }
+            );*/
+            routes.MapRoute(
+                name: "Account",
+                url: "Account/{action}/{id}",
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "Account/Login",
+                defaults: new { controller = "Account", action = "Login"}
             );
 
         }

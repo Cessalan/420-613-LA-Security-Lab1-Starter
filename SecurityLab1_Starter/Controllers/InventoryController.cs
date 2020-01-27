@@ -11,6 +11,7 @@ namespace SecurityLab1_Starter.Controllers
     public class InventoryController : Controller
     {
         // GET: Inventory
+        [Authorize(Users = "testuser1, testuser2,testuser3")]
         public ActionResult Index()
         {
             return View();
@@ -20,12 +21,12 @@ namespace SecurityLab1_Starter.Controllers
 
 
             filterContext.ExceptionHandled = true;
-
+            Logger log = new Logger();
             string filepath = @"C:\Users\Haroon\source\repos\420-613-LA-Security-Lab1-Starter\SecurityLab1_Starter\log.txt";
             using (StreamWriter w = System.IO.File.AppendText(filepath))
             {
 
-                Logger.Log(filterContext.Exception.ToString(), w);
+                log.Log(filterContext.Exception.Message, w);
             }
             filterContext.Result = RedirectToAction("Index", "Error");
 
